@@ -7,7 +7,7 @@
  export default {
     data() {
         return {
-            six: 668
+            six: 666666
         }
     }
 }
@@ -15,5 +15,6 @@
 <style lang="css">
     .asd {
         color: #ccc;
+        background: tomato;
     }
 </style>
