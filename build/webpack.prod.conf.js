@@ -40,7 +40,7 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: function (module) {
-              // any required modules inside node_modules are extracted to vendor
+              // 获取所有node_modules文件夹下被用的的vendor并分割
               return (
                 module.resource &&
                 /\.js$/.test(module.resource) &&

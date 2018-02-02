@@ -12,7 +12,7 @@
     }
 }
 </script>
-<style lang="css">
+<style lang="css" scoped>
     .asd {
         color: #ccc;
         background: tomato;
