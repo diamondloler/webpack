@@ -2,6 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const cleanWebpackPlugin = require('clean-webpack-plugin')
+const config = require('../config/index')
+const utils = require('../build/utils')
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
@@ -9,7 +11,9 @@ module.exports = {
     entry: './src/main.js',
     output: {
         filename: 'js/[name].[hash].js',
-        path: path.resolve(__dirname, '../dist/')
+        path: config.build.assetsRoot,
+        publicPath:process.env.NODE_ENV === 'production' ?
+        config.build.assetsPublicPath : config.dev.assetsPublicPath
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -17,7 +21,7 @@ module.exports = {
           'vue$': 'vue/dist/vue.esm.js',
           '@': resolve('src')
         }
-      },
+    },
     module: {
         rules: [
             {
@@ -34,7 +38,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                   limit: 10000,
-                  name: '../img/[name].[hash:7].[ext]'
+                  name: utils.assetsPath('img/[name].[hash:7].[ext]')
                 }
               },
               {
@@ -42,7 +46,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                   limit: 10000,
-                  name:'../media/[name].[hash:7].[ext]'
+                  name: utils.assetsPath('media/[name].[hash:7].[ext]')
                 }
               },
               {
@@ -50,17 +54,12 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                   limit: 10000,
-                  name: '../fonts/[name].[hash:7].[ext]'
+                  name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
                 }
               }
         ]
     },
     plugins: [
-        new htmlWebpackPlugin({
-            template: 'index.html',
-            filename: path.resolve(__dirname, '../dist/index.html'),
-            inject: true
-        }),
         new cleanWebpackPlugin('dist', {
             root: path.resolve(__dirname, '../')
         })

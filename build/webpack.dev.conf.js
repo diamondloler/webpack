@@ -1,8 +1,10 @@
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const webpack = require('webpack');
+const config = require('../config/index')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = merge(baseWebpackConfig, {
-    devtool: 'inline-source-map',
+    devtool: '#cheap-module-eval-source-map',
     module: {
         rules: [{
             test: /\.css$/,
@@ -19,6 +21,14 @@ module.exports = merge(baseWebpackConfig, {
         }]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': config.dev.env
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'index.html',
+            inject: true
+        }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]

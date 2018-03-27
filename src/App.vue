@@ -1,13 +1,14 @@
 <template>
     <div class="asd">
        {{six}}
+       <img src="./assets/hzz.jpg" />
     </div>
 </template>
 <script>
  export default {
     data() {
         return {
-            six: 666666
+            six: 66666644465465
         }
     }
 }
