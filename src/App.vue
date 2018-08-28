@@ -10,6 +10,17 @@
         return {
             six: 66666644465465
         }
+    },
+    async mounted() {
+        var p1 = new Promise((resovle) => {
+            setTimeout(() => {
+                resovle(10086)
+            }, 1000)
+        })
+
+        var res = await p1
+
+        console.log(res, '666')
     }
 }
 </script>
